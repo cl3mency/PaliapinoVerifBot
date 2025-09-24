@@ -14,7 +14,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents)
-channel = bot.get_channel(1420343132242972715)
+channel = bot.get_channel(1420449721402654750)
 
 @bot.event
 async def on_ready():
@@ -66,3 +66,4 @@ async def on_member_join(member):
         await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
