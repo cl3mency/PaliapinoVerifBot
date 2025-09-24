@@ -25,17 +25,13 @@ async def on_ready():
 
 async def on_member_join(member):
     #channel ID where bot messages
-    channel = bot.get_channel(1420343132242972715)
+    channel = bot.get_channel(1420449721402654750)
 
     #assigns new member role to newmember variable
     newmember = discord.utils.get(member.guild.roles, name = 'new member')
 
     #adds new member role to new joined member  
     await member.add_roles(newmember)
-
-    #time.sleep(2)
-    #sends message to channel 
-    #await channel.send(f"Welcome to the server {member.mention}\nTo unlock all the channels to the server, please type in your IGN in Palia so we can change it for you")
 
     @bot.event
     #waits for user message
@@ -45,10 +41,8 @@ async def on_member_join(member):
         
         #checks if message is sent in specific text channel
         
-        if message.channel.id == 1420343132242972715:
-            
-            #after user message, sends message update
-            #await channel.send(f"You are now a Verified Member")
+        if message.channel.id == 1420449721402654750:
+
             time.sleep(2)
 
             #assigns Verified Member role to VerifiedMember variable
