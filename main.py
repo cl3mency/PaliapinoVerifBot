@@ -63,7 +63,7 @@ async def on_member_join(member):
             else:
                 return
             
-            await bot.process_commands(message)
+        await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
 
