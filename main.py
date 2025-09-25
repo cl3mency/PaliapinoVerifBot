@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 from discord.utils import get
 import time
-
+from keep_alive import keep_alive
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
@@ -15,15 +15,14 @@ intents.message_content = True
 intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents)
 
+keep_alive()
+
 channel = bot.get_channel(1420449721402654750)
 
 @bot.event
 async def on_ready():
     #Sends a message if the bot has started and is running
     print("Bot is running")
-
-port = int(os.environ.get("PORT", 10000))
-bot.run(host = "0.0.0.0", port=port)
 
 @bot.event
 async def on_member_join(member):
