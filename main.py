@@ -14,12 +14,16 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents)
+
 channel = bot.get_channel(1420449721402654750)
 
 @bot.event
 async def on_ready():
     #Sends a message if the bot has started and is running
     print("Bot is running")
+
+port = int(os.environ.get("PORT", 10000))
+bot.run(host = "0.0.0.0", port=port)
 
 @bot.event
 async def on_member_join(member):
