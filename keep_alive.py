@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import Flask
+=======
+from flask import Flask
+>>>>>>> 9fe7d417444bfe392f5a9172f8044deba4b9c22f
 from threading import Thread
 
 app = Flask('')
