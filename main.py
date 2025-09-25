@@ -23,18 +23,7 @@ channel = bot.get_channel(1420449721402654750)
 async def on_ready():
     #Sends a message if the bot has started and is running
     print("Bot is running")
-
-@tasks.loop(minutes=2)
-async def scheduled_message():
-    channel_id2 = 1420343132242972715
-    channel2 = bot.get_channel(channel_id2)
-    await channel2.send("This bot is still running")
-
-@bot.event
-async def on_ready():
-    scheduled_message.start()
-
-
+    
 @bot.event
 async def on_member_join(member):
 
@@ -81,5 +70,6 @@ async def on_member_join(member):
         await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
