@@ -14,7 +14,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents)
-channel = bot.get_channel(1420343132242972715)
+channel = bot.get_channel(1420449721402654750)
 
 @bot.event
 async def on_ready():
@@ -22,17 +22,13 @@ async def on_ready():
     print("Bot is running")
 
 @bot.event
-
 async def on_member_join(member):
-    #channel ID where bot messages
-    channel = bot.get_channel(1420449721402654750)
 
     #assigns new member role to newmember variable
     newmember = discord.utils.get(member.guild.roles, name = 'new member')
 
     #adds new member role to new joined member  
     await member.add_roles(newmember)
-
     @bot.event
     #waits for user message
     async def on_message(message):
@@ -40,29 +36,33 @@ async def on_member_join(member):
             return
         
         #checks if message is sent in specific text channel
-        
         if message.channel.id == 1420449721402654750:
-
-            time.sleep(2)
+            if message.author == member:
+            
+            #await channel.send(f"You are now a Verified Member")
+                time.sleep(2)
 
             #assigns Verified Member role to VerifiedMember variable
-            VerifiedMember = discord.utils.get(member.guild.roles, name = 'Verified Member')
+                VerifiedMember = discord.utils.get(member.guild.roles, name = 'Mga Pipino')
 
             #assigns new member role to newmemberRemove variable
-            newmemberRemove = discord.utils.get(member.guild.roles, name = 'new member')
+                newmemberRemove = discord.utils.get(member.guild.roles, name = 'new member')
 
             #removes new member role from member
-            await member.remove_roles(newmemberRemove)
+                await member.remove_roles(newmemberRemove)
 
             #adds Verified Member role to member
-            await member.add_roles(VerifiedMember)
+                await member.add_roles(VerifiedMember)
 
             #assigns user input message to newNick variable
-            usrmsg = message.content
-            newNick = "IGN | " + usrmsg
+                usrmsg = message.content
+                newNick = "IGN | " + usrmsg
             #uses user input message to change nickname of new member
-            await member.edit(nick=newNick)
-  
-        await bot.process_commands(message)
+                await member.edit(nick=newNick)
+
+            else:
+                return
+            
+            await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
