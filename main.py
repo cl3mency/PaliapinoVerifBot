@@ -50,7 +50,7 @@ async def on_member_join(member):
 
             #removes new member role from member
                 await member.remove_roles(newmemberRemove)
-
+                time.sleep(2)
             #adds Verified Member role to member
                 await member.add_roles(VerifiedMember)
 
