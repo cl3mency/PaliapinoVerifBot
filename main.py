@@ -40,7 +40,7 @@ async def on_member_join(member):
 
 @bot.event
     #waits for user message
-async def on_message(message):
+async def on_message(message,member):
     if message.author == bot.user:
         return
         
@@ -76,4 +76,5 @@ async def on_message(message):
     await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
