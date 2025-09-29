@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 from discord.utils import get
 import time
-#from keep_alive import keep_alive
+from keep_alive import keep_alive
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
@@ -15,7 +15,7 @@ intents.message_content = True
 intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents)
 
-#keep_alive()
+keep_alive()
 
 channel = bot.get_channel(1420449721402654750)
 
