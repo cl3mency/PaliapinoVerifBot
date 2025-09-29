@@ -23,7 +23,7 @@ channel = bot.get_channel(1420449721402654750)
 async def scheduled_message():
     channel_id = 1420343132242972715
     channel = bot.get_channel(channel_id)
-    await channel.send("This bos is still running")
+    await channel.send("This bot is still running")
 
 @bot.event
 async def on_ready():
@@ -76,6 +76,7 @@ async def on_member_join(member):
         await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
 
