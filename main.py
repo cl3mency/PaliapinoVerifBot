@@ -46,9 +46,10 @@ async def on_message(message):
     if message.guild is None:
         return
     if message.author == bot.user:
-        return
-    
+        return    
     if message.channel.id != channel:
+        return
+    if message.channel.id == channel:
         guild = message.guild
         VerifiedMember = discord.utils.get(guild.roles, name = 'Mga Pipino')
         newmemberRemove = discord.utils.get(guild.roles, name = 'new member')
@@ -61,4 +62,5 @@ async def on_message(message):
     await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
