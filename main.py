@@ -39,42 +39,26 @@ async def on_member_join(member):
     await member.add_roles(newmember)
 
 @bot.event
-    #waits for user message
-async def on_message(message,member):
+async def on_message(message):
+    channel_id = 1420449721402654750
+    channel = bot.get_channel(channel_id)
+
+    if message.guild is None:
+        return
     if message.author == bot.user:
         return
-        
-        #checks if message is sent in specific text channel
-    if message.channel.id == 1420449721402654750:
-        if message.author == member:
-            
-            #await channel.send(f"You are now a Verified Member")
-            time.sleep(2)
-
-            #assigns Verified Member role to VerifiedMember variable
-            VerifiedMember = discord.utils.get(member.guild.roles, name = 'Mga Pipino')
-
-            #assigns new member role to newmemberRemove variable
-            newmemberRemove = discord.utils.get(member.guild.roles, name = 'new member')
-
-            #removes new member role from member
-            await member.remove_roles(newmemberRemove)
-            time.sleep(2)
-            #adds Verified Member role to member
-            await member.add_roles(VerifiedMember)
-
-            #assigns user input message to newNick variable
-            usrmsg = message.content
-            newNick = "IGN | " + usrmsg
-            #uses user input message to change nickname of new member
-            await member.edit(nick=newNick)
-
-        else:
-            return
-
-
+    
+    if message.channel.id != channel:
+        guild = message.guild
+        VerifiedMember = discord.utils.get(guild.roles, name = 'Mga Pipino')
+        newmemberRemove = discord.utils.get(guild.roles, name = 'new member')
+        await message.author.remove_roles(newmemberRemove)
+        await message.author.add_roles(VerifiedMember)
+        urmsg = message.content
+        newNick = "IGN | " + urmsg
+        await message.author.edit(nick=newNick)
+    
     await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
-
 
