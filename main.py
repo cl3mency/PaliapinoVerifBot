@@ -42,14 +42,14 @@ async def on_member_join(member):
 async def on_message(message):
     channel_id = 1420449721402654750
     channel = bot.get_channel(channel_id)
-
     if message.guild is None:
         return
-    if message.author == bot.user:
-        return    
-    if message.channel.id != channel:
+    elif message.author == bot.user:
         return
-    if message.channel.id == channel:
+    if message.channel.id != channel_id:
+        await bot.process_commands(message)
+        return
+    if message.channel.id == channel_id:
         guild = message.guild
         VerifiedMember = discord.utils.get(guild.roles, name = 'Mga Pipino')
         newmemberRemove = discord.utils.get(guild.roles, name = 'new member')
@@ -62,5 +62,8 @@ async def on_message(message):
     await bot.process_commands(message)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
+
+
 
 
