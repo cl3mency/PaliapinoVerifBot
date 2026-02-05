@@ -16,17 +16,6 @@ intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents)
 channel = bot.get_channel(1420449721402654750)
 
-
-@tasks.loop(minutes=3)
-async def scheduled_message():
-    channel_id = 1420343132242972715
-    channel = bot.get_channel(channel_id)
-    await channel.send("This bot is still running")
-
-@bot.event
-async def on_ready():
-    scheduled_message.start()
-
 @bot.event
 async def on_member_join(member):
 
@@ -60,6 +49,7 @@ async def on_message(message):
     await bot.process_commands(message)
 keep_alive.keep_alive()
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
 
