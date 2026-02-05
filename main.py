@@ -5,9 +5,7 @@ from dotenv import load_dotenv
 import os
 from discord.utils import get
 import time
-from keep_alive import keep_alive
-
-keep_alive()
+import keep_alive
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
@@ -60,8 +58,9 @@ async def on_message(message):
         await message.author.edit(nick=newNick)
     
     await bot.process_commands(message)
-
+keep_alive.keep_alive()
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
 
