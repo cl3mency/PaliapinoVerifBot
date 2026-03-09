@@ -22,8 +22,8 @@ intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents)
 
 CHANNEL_ID = 1420449721402654750
-NEW_MEMBER_ROLE = 'new member'
-VERIFIED_ROLE = 'Mga Pipino'
+NEW_MEMBER_ROLE = "new member"
+VERIFIED_ROLE = "Mga Pipino"
 
 
 @bot.event
@@ -88,3 +88,4 @@ async def on_message(message):
 
 keep_alive.keep_alive()
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
