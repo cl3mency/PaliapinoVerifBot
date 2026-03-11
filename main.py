@@ -22,6 +22,7 @@ intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents)
 
 CHANNEL_ID = 1420449721402654750
+NEW_MEMBER_ROLE_ID = 1420386194646372482
 NEW_MEMBER_ROLE = "new member"
 VERIFIED_ROLE = "Mga Pipino"
 
@@ -33,9 +34,9 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    newmember = get(member.guild.roles, name=NEW_MEMBER_ROLE)
-    if newmember:
-        await member.add_roles(newmember)
+    role = member.guild.get_role(NEW_MEMBER_ROLE_ID)
+    if role:
+        await member.add_roles(role)
 
 
 @bot.event
@@ -88,4 +89,5 @@ async def on_message(message):
 
 keep_alive.keep_alive()
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
