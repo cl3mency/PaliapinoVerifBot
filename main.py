@@ -35,8 +35,16 @@ async def on_ready():
 @bot.event
 async def on_member_join(member):
     role = member.guild.get_role(NEW_MEMBER_ROLE_ID)
-    await member.add_roles(role)
 
+    if role is None:
+        print("Role not found")
+        return
+
+    try:
+        await member.add_roles(role)
+        print(f"Added role to {member}")
+    except discord.Forbidden:
+        print("Missing Manage Roles permission")
 
 @bot.event
 async def on_message(message):
