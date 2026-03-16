@@ -34,9 +34,8 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    role = member.guild.get_role(NEW_MEMBER_ROLE)
-    if role is None:
-        await member.add_roles(role)
+    role = member.guild.get_role(NEW_MEMBER_ROLE_ID)
+    await member.add_roles(role)
 
 
 @bot.event
